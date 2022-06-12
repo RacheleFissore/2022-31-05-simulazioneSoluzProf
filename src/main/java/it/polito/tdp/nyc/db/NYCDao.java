@@ -34,6 +34,7 @@ public class NYCDao {
 		}
 	}
 	
+	// La COUNT(*) conta il numero di righe che rappresentano il numero di hotspot presenti in una determinata city
 	public List<City> getCities(String provider) {
 		String sql = "SELECT DISTINCT City, AVG(Latitude) AS Lat, AVG(Longitude) AS Lng, COUNT(*) AS NUM "
 				+ "FROM nyc_wifi_hotspot_locations "

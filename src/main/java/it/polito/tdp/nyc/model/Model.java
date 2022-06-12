@@ -60,6 +60,7 @@ public class Model {
 		return cities;
 	}
 
+	// La uso per popolare la table view
 	public List<CityDistance> getCityDistances(City scelto) {
 		List<CityDistance> result = new ArrayList<>();
 		List<City> vicini = Graphs.neighborListOf(this.grafo, scelto);

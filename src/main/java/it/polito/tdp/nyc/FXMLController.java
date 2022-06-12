@@ -54,6 +54,8 @@ public class FXMLController {
     private TextArea txtResult; // Value injected by FXMLLoader
     
     @FXML // fx:id="clQuartiere"
+    // CityDistance: sono gli oggetti di cui vogliamo mostrare il valore nella tabella
+    // String: la colonna clQuartiere conterrà delle stringhe
     private TableColumn<CityDistance, String> clQuartiere; // Value injected by FXMLLoader
  
     @FXML // fx:id="clDistanza"
@@ -92,6 +94,7 @@ public class FXMLController {
     	
     	List<CityDistance> distanze = model.getCityDistances(scelto) ;
     	
+    	// Riempie la tabella
     	tblQuartieri.setItems(FXCollections.observableArrayList(distanze));
     	
     }
@@ -131,6 +134,7 @@ public class FXMLController {
         assert clDistanza != null : "fx:id=\"clDistanza\" was not injected: check your FXML file 'Scene.fxml'.";
         assert clQuartiere != null : "fx:id=\"clQuartiere\" was not injected: check your FXML file 'Scene.fxml'.";
         
+        // ("nome") è il nome dell'attributo da estrarre dalla classe CityDistance
 		clQuartiere.setCellValueFactory(new PropertyValueFactory<CityDistance, String>("nome"));
 		clDistanza.setCellValueFactory(new PropertyValueFactory<CityDistance, Double>("distanza"));
     }
