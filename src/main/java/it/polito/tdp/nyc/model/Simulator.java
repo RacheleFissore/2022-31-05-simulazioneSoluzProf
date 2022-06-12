@@ -48,7 +48,7 @@ public class Simulator {
 		
 		// Inizializzo il mondo
 		this.currentCity = this.partenza; // All'inizio la città che sto visitando ora è quella di partenza
-		this.daVisitare = new ArrayList<>(this.cities); // Le città da visitare sono tutte le città a cui ho tolto quella di partenza
+		this.daVisitare = new ArrayList<>(this.cities); // Le città da visitare sono tutte le città a cui tolgo quella di partenza
 		this.daVisitare.remove(this.currentCity); // Tolgo la città di partenza dalla lista delle città da visitare
 		this.hotSpotRimanenti = this.currentCity.getnHotSpot(); // Sono gli hotspot della città corrente
 		this.tecniciOccupati = 0; // All'inizio non ho ancora nessun tecnico occupato
@@ -56,7 +56,8 @@ public class Simulator {
 		// Crea la coda
 		this.queue = new PriorityQueue<>();
 		
-		// Caricamento iniziale della coda, devo schedulare l'inizio del lavoro per tutti i tecnici finchè ho tecnici da assegnare e hotspot da revisionare
+		// Caricamento iniziale della coda, devo schedulare l'inizio del lavoro per tutti i tecnici finchè ho tecnici da assegnare e 
+		// hotspot da revisionare
 		int i = 0; // Numero del tecnico
 		while(this.tecniciOccupati<this.N && this.hotSpotRimanenti>0) {
 			// Posso assegnare un tecnico ad un hotspot, quindi genero un evento di inizio lavoro all'istante 0 per il tecnico i
@@ -84,7 +85,7 @@ public class Simulator {
 		switch(type) {
 		case INIZIO_HS:
 			// Il tecnico prende in carico un lavoro e quindi aggiorno il numero di hotspot revisionati da quel tecnico
-			this.revisionati.set(tecnico, this.revisionati.get(tecnico)+1);
+			this.revisionati.set(tecnico, this.revisionati.get(tecnico)+1); // Aumento di +1 il numero di hotspot revisionati da quel tecnico
 			
 			if(Math.random()<0.1) { 
 				// Nel 10% dei casi la durata è di 25 minuti e quindi dopo 25 minuti dall'istante attuale termino il lavoro
@@ -105,11 +106,12 @@ public class Simulator {
 				this.hotSpotRimanenti--;
 				queue.add(new Event(time+spostamento, EventType.INIZIO_HS, tecnico));
 			} else if(this.tecniciOccupati>0) {
-				// Non fai nulla se oltre a me c'è ancora qualcuno che sta lavorando nello stesso quartiere e quindi devo aspettare che finisca prima di cambiare quartiere
+				// Non fai nulla se oltre a me c'è ancora qualcuno che sta lavorando nello stesso quartiere e quindi devo aspettare che finisca di 
+				// lavorare prima di cambiare quartiere
 			} else if(this.daVisitare.size()>0){
 				// Sono l'ultimo tecnico che sta lavorando in un quartiere e quindi tutti cambiamo quartiere
 				
-				// SCelgo il quartiere più vicino come prossimo quartiere da visitare
+				// Scelgo il quartiere più vicino come prossimo quartiere da visitare
 				City destinazione = piuVicino(this.currentCity, this.daVisitare);
 				
 				int spostamento = (int)(this.grafo.getEdgeWeight(this.grafo.getEdge(this.currentCity, destinazione)) / 50.0 *60.0); // Ottengo il tempo in minuti

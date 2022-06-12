@@ -2,10 +2,10 @@ package it.polito.tdp.nyc.model;
 
 public class Event implements Comparable<Event> {
 	
-	// SChedulo tanti processi INIZIO_HS per ogni tecnoco finchè ho hotspot disponibili nel quartiere
+	// Schedulo tanti processi INIZIO_HS per ogni tecnico finchè ho hotspot disponibili nel quartiere
 	public enum EventType {
 		INIZIO_HS, // Tecnico inizia a lavorare su un hotspot
-		FINE_HS, // tecnico termina il lavoro su un hotspot
+		FINE_HS, // Tecnico termina il lavoro su un hotspot
 		NUOVO_QUARTIERE, // La squadra si sposta in un nuovo quartiere quando tutti i tecnici sono disoccupati
 	}
 	
