@@ -10,7 +10,6 @@ import org.jgrapht.graph.DefaultWeightedEdge;
 import it.polito.tdp.nyc.model.Event.EventType;
 
 public class Simulator {
-	
 	// Dati in ingresso: sono costanti e non cambieranno mai durante la simulazione
 	private Graph<City, DefaultWeightedEdge> grafo;
 	private List<City> cities;
@@ -47,10 +46,10 @@ public class Simulator {
 			revisionati.add(0); // All'inizio nessun hotspot è ancora stato revisionato dai tecnici
 		
 		// Inizializzo il mondo
-		this.currentCity = this.partenza; // All'inizio la città che sto visitando ora è quella di partenza
-		this.daVisitare = new ArrayList<>(this.cities); // Le città da visitare sono tutte le città a cui tolgo quella di partenza
-		this.daVisitare.remove(this.currentCity); // Tolgo la città di partenza dalla lista delle città da visitare
-		this.hotSpotRimanenti = this.currentCity.getnHotSpot(); // Sono gli hotspot della città corrente
+		this.currentCity = this.partenza; // All'inizio il quartiere che sto visitando ora è quello di partenza
+		this.daVisitare = new ArrayList<>(this.cities); // I quartieri da visitare sono tutti, a cui tolgo quello di partenza
+		this.daVisitare.remove(this.currentCity); // Tolgo il quartiere di partenza dalla lista dei quartieri da visitare
+		this.hotSpotRimanenti = this.currentCity.getnHotSpot(); // Sono gli hotspot del quartiere corrente
 		this.tecniciOccupati = 0; // All'inizio non ho ancora nessun tecnico occupato
 		
 		// Crea la coda
